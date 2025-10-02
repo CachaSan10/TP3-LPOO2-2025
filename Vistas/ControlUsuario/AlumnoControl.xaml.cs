@@ -12,18 +12,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
 namespace Vistas.ControlUsuario
 {
     /// <summary>
-    /// Lógica de interacción para AltaAlumno.xaml
+    /// Lógica de interacción para AlumnoControl.xaml
     /// </summary>
-    public partial class AltaAlumno : UserControl
+    public partial class AlumnoControl : UserControl
     {
-        public AltaAlumno()
+        public AlumnoControl()
         {
             InitializeComponent();
         }
-       
     }
 }

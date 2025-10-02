@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
+using ClasesBase.Utilities.Validators;
 
 namespace ClasesBase
 {
-    public class Alumno
+    public class Alumno : IDataErrorInfo
     {
         private int alu_ID;
         private string alu_DNI;
@@ -42,5 +44,98 @@ namespace ClasesBase
             get { return alu_ID; }
             set { alu_ID = value; }
         }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string msg_error = null;
+
+                switch (columnName)
+                {
+                    case "Alu_DNI":
+                        msg_error = validar_DNI(); break;
+                    case "Alu_Apellido":
+                        msg_error = validar_Apellido(); break;
+                    case "Alu_Nombre":
+                        msg_error = validar_Nombre(); break;
+                    case "Alu_Email":
+                        msg_error = validar_Email(); break;
+
+                }
+                return msg_error;
+            }
+        }
+
+        private string validar_DNI()
+        {
+            var dni_valido = DniValidator.ValidarDni(Alu_DNI);
+            if (!dni_valido.IsValid)
+            {
+                return dni_valido.ErrorMessage;
+            }
+            return null;
+        }
+        /*private string validar_DNI()
+        {
+            if (String.IsNullOrEmpty(Alu_DNI))
+            {
+                return "El valor del campo es obligatorio";
+            }
+            else if (Alu_DNI.Length <8 || Alu_DNI.Length>8)
+            {
+                return "El DNI debe tener 8 digitos";
+            }
+            return null;
+        }*/
+
+        private string validar_Apellido()
+        {
+            if (String.IsNullOrEmpty(Alu_Apellido))
+            {
+                return "El valor del campo es obligatorio";
+            }
+            else if (Alu_Apellido.Length > 50)
+            {
+                return "El Apellido debe tener menos de 50 caracteres";
+            }
+            return null;
+        }
+
+        private string validar_Nombre()
+        {
+            if (String.IsNullOrEmpty(Alu_Nombre))
+            {
+                return "El valor del campo es obligatorio";
+            }
+            else if (Alu_Nombre.Length > 50)
+            {
+                return "El Nombre debe tener menos de 50 caracteres";
+            }
+            return null;
+        }
+
+        private string validar_Email()
+        {
+            if (String.IsNullOrEmpty(Alu_Email))
+            {
+                return "El valor del campo es obligatorio";
+            }
+            else
+            {
+                var email_Valido = EmailValidator.ValidarEmail(Alu_Email);
+                if (!email_Valido.IsValid)
+                {
+                    return "El email es invalido";
+                }
+            }
+            return null;
+        }
+
     }
 }

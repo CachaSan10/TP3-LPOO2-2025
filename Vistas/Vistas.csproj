@@ -58,17 +58,19 @@
     <Compile Include="BuscarAlumno.xaml.cs">
       <DependentUpon>BuscarAlumno.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlUsuario\AlumnoControl.xaml.cs">
+      <DependentUpon>AlumnoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EstadoCursos.xaml.cs">
       <DependentUpon>EstadoCursos.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListarCursos.xaml.cs">
       <DependentUpon>ListarCursos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValidarAlumno.xaml.cs">
+      <DependentUpon>ValidarAlumno.xaml</DependentUpon>
+    </Compile>
     <Page Include="BuscarAlumno.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ControlUsuario\AltaAlumno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,6 +83,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlUsuario\AltaUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlUsuario\AlumnoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,9 +129,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ControlUsuario\AltaAlumno.xaml.cs">
-      <DependentUpon>AltaAlumno.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlUsuario\AltaCurso.xaml.cs">
       <DependentUpon>AltaCurso.xaml</DependentUpon>
@@ -201,11 +204,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plantillas\PlantillaTextBoxError.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Principal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ListarCursos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValidarAlumno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

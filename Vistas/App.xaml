@@ -13,7 +13,7 @@
                 <ResourceDictionary Source="./Plantillas/PlantillaDatePicker.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="./Plantillas/PlantillaLabel.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="./Plantillas/PlantillaTextBlock.xaml"></ResourceDictionary>
-
+                <ResourceDictionary Source="./Plantillas/PlantillaTextBoxError.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
          
