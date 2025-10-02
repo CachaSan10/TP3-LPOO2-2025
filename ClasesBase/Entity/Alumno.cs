@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using ClasesBase.Utilities.Validators;
+using System.Text.RegularExpressions;
 
 namespace ClasesBase
 {
@@ -98,12 +99,16 @@ namespace ClasesBase
         {
             if (String.IsNullOrEmpty(Alu_Apellido))
             {
-                return "El valor del campo es obligatorio";
+                return "El Apellido es obligatorio";
             }
-            else if (Alu_Apellido.Length > 50)
+             if (Alu_Apellido.Length > 50)
             {
                 return "El Apellido debe tener menos de 50 caracteres";
             }
+
+             if (!Regex.IsMatch(Alu_Apellido, @"^[a-zA-ZáéíóúñÑ\s]+$"))
+                 return  "El Apellido solo puede contener letras y espacios";
+
             return null;
         }
 
@@ -111,12 +116,14 @@ namespace ClasesBase
         {
             if (String.IsNullOrEmpty(Alu_Nombre))
             {
-                return "El valor del campo es obligatorio";
+                return "El Nombre es obligatorio";
             }
-            else if (Alu_Nombre.Length > 50)
+             if (Alu_Nombre.Length > 50)
             {
                 return "El Nombre debe tener menos de 50 caracteres";
             }
+             if (!Regex.IsMatch(Alu_Nombre, @"^[a-zA-ZáéíóúñÑ\s]+$"))
+                 return "El Nombre solo puede contener letras y espacios";
             return null;
         }
 
@@ -124,14 +131,14 @@ namespace ClasesBase
         {
             if (String.IsNullOrEmpty(Alu_Email))
             {
-                return "El valor del campo es obligatorio";
+                return "El Email es obligatorio";
             }
             else
             {
                 var email_Valido = EmailValidator.ValidarEmail(Alu_Email);
                 if (!email_Valido.IsValid)
                 {
-                    return "El email es invalido";
+                    return email_Valido.ErrorMessage;
                 }
             }
             return null;

@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using ClasesBase;
 namespace Vistas.ControlUsuario
 {
     /// <summary>
@@ -19,9 +19,40 @@ namespace Vistas.ControlUsuario
     /// </summary>
     public partial class AlumnoControl : UserControl
     {
+        private Alumno _alumno;
+
         public AlumnoControl()
         {
             InitializeComponent();
+            _alumno = new Alumno();
+            this.DataContext = _alumno;
+        }
+
+        // Propiedad para acceder al alumno desde fuera
+        public Alumno Alumno
+        {
+            get { return _alumno; }
+            set
+            {
+                _alumno = value;
+                this.DataContext = _alumno;
+            }
+        }
+
+        // Método para verificar si hay errores de validación
+        public bool IsValid()
+        {
+            return string.IsNullOrEmpty(_alumno["Alu_DNI"]) &&
+                   string.IsNullOrEmpty(_alumno["Alu_Nombre"]) &&
+                   string.IsNullOrEmpty(_alumno["Alu_Apellido"]) &&
+                   string.IsNullOrEmpty(_alumno["Alu_Email"]);
+        }
+
+        // Método para limpiar los campos
+        public void LimpiarCampos()
+        {
+            _alumno = new Alumno();
+            this.DataContext = _alumno;
         }
     }
 }

@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:control="clr-namespace:Vistas.ControlUsuario"
         Title="ValidarAlumno" Height="533" Width="623" Background="#f8f0ec">
+    
+   
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
