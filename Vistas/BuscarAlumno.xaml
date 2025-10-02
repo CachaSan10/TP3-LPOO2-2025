@@ -1,0 +1,108 @@
+﻿<Window x:Class="Vistas.BuscarAlumno"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="clr-namespace:ClasesBase.DataAccess;assembly=ClasesBase"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="Modificar Alumno"
+        Height="500" Width="600"
+        WindowStartupLocation="CenterScreen" 
+        Background="#f8f0ec">
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="AlumnoProvider"
+                            ObjectType="{x:Type svc:TrabajarAlumno}"
+                            MethodName="TraerAlumno"
+                            IsAsynchronous="False">
+            <ObjectDataProvider.MethodParameters>
+                <system:Int32>0</system:Int32>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
+    <Grid DataContext="{StaticResource AlumnoProvider}" Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- encabezado -->
+            <RowDefinition Height="*"/>
+            <!-- cuerpo -->
+            <RowDefinition Height="Auto"/>
+            <!-- pie -->
+        </Grid.RowDefinitions>
+
+        <!-- ENCABEZADO CON TÍTULO Y LOGO -->
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- TÍTULO PRINCIPAL CENTRADO -->
+            <Label Content="MODIFICAR ALUMNO" 
+                   Style="{StaticResource LabelTitulo}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Column="0" Grid.ColumnSpan="2"/>
+
+            <!-- LOGO EN ESQUINA SUPERIOR DERECHA -->
+            <Image Source="/Images/logo-lujan.png" Grid.Column="1"
+                   Width="60" Height="60" 
+                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- CUERPO -->
+        <Grid Grid.Row="1" Margin="0,10,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ID -->
+            <Label Grid.Row="0" Grid.Column="0" Content="ID:" VerticalAlignment="Center" Style="{StaticResource CustomLabel}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="txtID" Margin="0,5" Style="{StaticResource txt_plantillaStyle}" >
+                <TextBox.Text>
+                    <Binding Source="{StaticResource AlumnoProvider}" 
+                             Path="MethodParameters[0]" 
+                             BindsDirectlyToSource="True"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="PropertyChanged"
+                             ValidatesOnExceptions="True"/>
+                </TextBox.Text>
+            </TextBox>
+
+            <!-- DNI -->
+            <Label Grid.Row="1" Grid.Column="0" Content="DNI:" VerticalAlignment="Center" Style="{StaticResource CustomLabel}"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Alu_DNI}" Margin="0,5" IsReadOnly="True" Style="{StaticResource txt_plantillaStyle}" Name="txtDni"/>
+
+            <!-- Nombre -->
+            <Label Grid.Row="2" Grid.Column="0" Content="Nombre:" VerticalAlignment="Center" Style="{StaticResource CustomLabel}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Alu_Nombre}" Margin="0,5" IsReadOnly="True" Style="{StaticResource txt_plantillaStyle}" Name="txtNombre"/>
+
+            <!-- Apellido -->
+            <Label Grid.Row="3" Grid.Column="0" Content="Apellido:" VerticalAlignment="Center" Style="{StaticResource CustomLabel}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Alu_Apellido}" Margin="0,5" IsReadOnly="True" Style="{StaticResource txt_plantillaStyle}" Name="txtApellido"/>
+
+            <!-- Email -->
+            <Label Grid.Row="4" Grid.Column="0" Content="Email:" VerticalAlignment="Center" Style="{StaticResource CustomLabel}"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Alu_Email}" Margin="0,5" IsReadOnly="True" Style="{StaticResource txt_plantillaStyle}" Name="txtEmail"/>
+        </Grid>
+
+        <!-- PIE DE BOTONES -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Margin="0,15,0,0">
+            <Button Name="btnGuardar" Content="Actualizar" Width="120" Height="40"
+                    Style="{StaticResource btnAceptar}" 
+                    
+                    Margin="0,0,15,0"/>
+            <Button Name="btnCancelar" Content="Cancelar" Width="120" Height="40"
+                    Style="{StaticResource btnCancelar}" 
+                    Click="btnCancelar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
