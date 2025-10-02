@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClasesBase;
+
 
 namespace Vistas
 {
@@ -30,7 +32,7 @@ namespace Vistas
 
         private void btnValidar_Click(object sender, RoutedEventArgs e)
         {
-           
+            Alumno alu = new Alumno();
         }
 
     }
